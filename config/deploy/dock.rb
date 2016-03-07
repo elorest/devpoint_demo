@@ -1,6 +1,11 @@
-set :stage, :staging
+set :stage, :dock
 set :branch, ENV["branch"] || "master"
 set :rails_env, "production"
+
+set :ssh_options, {
+  user: 'app',
+  port: 622
+}
 
 # Simple Role Syntax
 # ==================
@@ -10,11 +15,11 @@ set :rails_env, "production"
 # if (copy_id_present = `which ssh-copy-id`).size < 1 || copy_id_present.include?("not found")
 #   `brew install ssh-copy-id`
 # end
-urls = %w{deploy@puma.elorest.com}
+urls = %w{app@dock.elorest.com}
 role :app, urls 
 role :web, urls 
 role :db,  urls 
-set :deploy_to, '~/www/passenger'
+set :deploy_to, '~/www/dock'
 
 # Extended Server Syntax
 # ======================
@@ -22,7 +27,7 @@ set :deploy_to, '~/www/passenger'
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server urls.first, user: 'deploy', roles: %w{web app}, my_property: :my_value
+server urls.first, user: 'app', roles: %w{web app}, my_property: :my_value
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options

@@ -1,9 +1,9 @@
-set :application, 'passenger'
-set :repo_url, 'git@github.com:isaacsloan/dp_blog_presentation.git'
+set :application, 'dock'
+set :repo_url, 'git@github.com:isaacsloan/devpoint_demo.git'
 
 set :branch, :master 
 
-set :deploy_to, '~/www/passenger'
+set :deploy_to, '~/www/dock'
 set :scm, :git
 
 set :format, :pretty
